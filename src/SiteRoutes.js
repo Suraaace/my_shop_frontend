@@ -54,7 +54,7 @@ export const SiteRoutes = (props) => {
                 <FrontendRoutes exact path={'/category/details/:itemId'} component={ProductListing}/>
                 <FrontendRoutes exact path={'/cart'} component={Cart}/>
                 <FrontendRoutes exact path={'/login'} component={Login}/>
-                <FrontendRoutes exact path={'/account'} component={Account}/>
+                <FrontendRoutes path={'/account'} component={Account}/>
 
             </Switch>
         </Router>
