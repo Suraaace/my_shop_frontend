@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {GlobalStore} from "global-store-hook";
 import axios from "axios";
 import history from "../../../helper/history";
+import {Link} from "react-router-dom";
 
 
 
@@ -19,26 +20,27 @@ export const Cart = (props) => {
         localStorage.setItem('cart', JSON.stringify(newItems));
     };
 
-    const placeOrder= () => {
+    // const placeOrder= () => {
+        
 
-        for (let itm of cartItems) {
+    //     for (let itm of cartItems) {
 
-            let orderObj = {
-                user : user._id,
-                product : itm._id,
-                status: "pending"
-            };
+    //         let orderObj = {
+    //             user : user._id,
+    //             product : itm._id,
+    //             status: "pending"
+    //         };
 
-            axios.post(process.env.REACT_APP_API_HOST_URL+'/order/create', orderObj)
-                .then ((response) => {
-                    console.log(orderObj);
+    //         axios.post(process.env.REACT_APP_API_HOST_URL+'/order/create', orderObj)
+    //             .then ((response) => {
+    //                 console.log(orderObj);
 
-                })
-        }
-        store.set('cart', []);
-        localStorage.setItem('cart', "");
-        setPlaceOrderText('Order Placed Success');
-    };
+    //             })
+    //     }
+    //     store.set('cart', []);
+    //     localStorage.setItem('cart', "");
+    //     setPlaceOrderText('Order Placed Success');
+    // };
    
     const totalPrice = cartItems.reduce((accum,item) => parseInt(accum) + parseInt(item.price), 0);
 
@@ -74,7 +76,8 @@ export const Cart = (props) => {
                     }
                     </tbody>
                 </table>
-                <button type={'button'} className={'btn btn-primary'} onClick={() => placeOrder()}>{placeOrderText}</button>
+                {/* <button type={'button'} className={'btn btn-primary'} onClick={() => placeOrder()}>{placeOrderText}</button> */}
+                <button type={'button'} className={'btn btn-primary'} onClick={() => history.push('/orderconfirm')}>{placeOrderText}</button>
             </div>
         </div>
     );
