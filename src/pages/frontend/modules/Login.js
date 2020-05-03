@@ -76,7 +76,7 @@ export const Login = (props) => {
                             </label>
                         </div>
                         <button type="submit" className="btn btn-primary">Login</button>
-                        <Link className="dropdown-item" to="#">New around here? Sign up</Link>
+                        <Link className="dropdown-item" to="/signUp">New around here? Sign up</Link>
                         <Link className="dropdown-item" to="#">Forgot password?</Link>
                     </form>
                 </div>

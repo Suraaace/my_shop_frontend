@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 
-export const CategoryCard = props => {
+export const CategoryCard = (props) => {
     const category = props.category;
     return (
         <div className={'col-3'}>

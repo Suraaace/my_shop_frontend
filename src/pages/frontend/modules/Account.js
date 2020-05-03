@@ -14,13 +14,22 @@ export const Account = (props) => {
     const [orders, setOrders] = useState([]);
     const store = GlobalStore();
     const user = store.get('user');
+    const [userInfo, setUserInfo] = useState({});
+    
     
     useEffect(() => {
+        let id = user.id;
         axios.get(process.env.REACT_APP_API_HOST_URL+'/order/')
         .then((response) => {
             setOrders(response.data.data);
         }) 
         .catch(err=>err);
+
+        // axios.get(process.env.REACT_APP_API_HOST_URL+'/user/'+id)
+        //     .then((response)=>{
+        //         setUserInfo(response.data.data);
+        //     })
+        //     .catch(err => err);
     }, []); // [] to stop the loop call
     
     return(
@@ -50,7 +59,7 @@ export const Account = (props) => {
                     <OrderHistory orders={orders}/>
                 </Route>
                 <Route path="/account/my-profile">
-                    <MyProfile />
+                    <MyProfile user={userInfo} />
                 </Route>
 
             </div>            
@@ -89,11 +98,51 @@ function OrderHistory(props) {
     );
 }
 
-function MyProfile() {
+function MyProfile(props) {
+    const store = GlobalStore();
+    const user = store.get('user');
+    const [userInfo, setUserInfo] = useState({});
+
+    useEffect(()=>{
+        let id = user._id;
+    axios.get(process.env.REACT_APP_API_HOST_URL+'/user/'+id)
+            .then((response)=>{
+                setUserInfo(response.data.data);
+            })
+            .catch(err => err);
+    },[]);
+    
     return (
         <div>
             <h2>My Profile</h2>
-            <p>My Profile</p>
+            <div>
+            <form>
+                <div className="form-group row">
+                    <label htmlFor="firsName " className="col-sm-2 col-form-label">First Name</label>
+                    <div className="col-sm-10" >
+                        <input type="text"  readonly className="form-control" value={userInfo.firstName} />   
+                    </div>
+                </div>
+                <div className="form-group row">
+                    <label htmlFor="lastName" className="col-sm-2 col-form-label" >Last Name</label>
+                    <div className="col-sm-10">
+                        <input type="text" readonly className="form-control" value={userInfo.lastName}/>
+                    </div>
+                </div>
+                <div className="form-group row">
+                    <label htmlFor="phoneNumber" className="col-sm-2 col-form-label" >Phone Number</label>
+                    <div className="col-sm-10">
+                        <input type="text" readonly className="form-control" value={userInfo.phone} />
+                    </div>
+                </div>
+                <div className="form-group row">
+                    <label htmlFor="email " className="col-sm-2 col-form-label">Email</label>
+                    <div className="col-sm-10">
+                        <input type="text" readonly className="form-control" value={userInfo.email} />
+                    </div>
+                </div>
+           </form>
+           </div>
         </div>
     );
 }
