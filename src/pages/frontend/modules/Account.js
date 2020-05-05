@@ -120,27 +120,44 @@ function MyProfile(props) {
                 <div className="form-group row">
                     <label htmlFor="firsName " className="col-sm-2 col-form-label">First Name</label>
                     <div className="col-sm-10" >
-                        <input type="text"  readonly className="form-control" value={userInfo.firstName} />   
+                        <input type="text"  name ={"firstname"}className="form-control" value={userInfo.firstName} onChange={(e)=>{
+                            setUserInfo({...userInfo, firstName: e.target.value});
+                        }}/>   
                     </div>
                 </div>
                 <div className="form-group row">
                     <label htmlFor="lastName" className="col-sm-2 col-form-label" >Last Name</label>
                     <div className="col-sm-10">
-                        <input type="text" readonly className="form-control" value={userInfo.lastName}/>
+                        <input type="text"  className="form-control" value={userInfo.lastName} onChange={(e)=>{
+                            setUserInfo({...userInfo, lastName: e.target.value});
+                        }}/>    
                     </div>
                 </div>
                 <div className="form-group row">
                     <label htmlFor="phoneNumber" className="col-sm-2 col-form-label" >Phone Number</label>
                     <div className="col-sm-10">
-                        <input type="text" readonly className="form-control" value={userInfo.phone} />
+                        <input type="text"  className="form-control" value={userInfo.phone} onChange={(e)=>{
+                            setUserInfo({...userInfo, phone: e.target.value});
+                        }} />
                     </div>
                 </div>
                 <div className="form-group row">
                     <label htmlFor="email " className="col-sm-2 col-form-label">Email</label>
                     <div className="col-sm-10">
-                        <input type="text" readonly className="form-control" value={userInfo.email} />
+                        <input type="text"  className="form-control" value={userInfo.email} onChange={(e)=>{
+                            setUserInfo({...userInfo, email: e.target.value});
+                        }} />
                     </div>
                 </div>
+                <button type="button" className="btn btn-primary" onClick={()=>{
+                
+                    axios.post(process.env.REACT_APP_API_HOST_URL+'/user/update/'+ user._id, userInfo)
+                    .then((response)=>{
+                        store.set('user', userInfo);
+                    })
+                    .catch(err => err);
+                    
+                }}> Save </button>
            </form>
            </div>
         </div>

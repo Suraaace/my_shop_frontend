@@ -60,6 +60,9 @@ export const SiteRoutes = (props) => {
                 <FrontendRoutes exact path={'/login'} component={Login}/>
                 <FrontendRoutes path={'/signUp'} component={SignUp} />
                 <FrontendRoutes path={'/account'} component={Account}/>
+                <FrontendRoutes exact path={'/orderConfirm'} component={OrderConfirm}/>
+
+                
 
 
 

@@ -12,6 +12,7 @@ export const Cart = (props) => {
     const store = GlobalStore();
     const cartItems = store.get('cart');
     const user = store.get('user');
+    const [coupon, setCoupon] = useState('');
 
     const handleRemove = (id) => {
         const newItems = cartItems.filter(itm => itm._id !== id);
@@ -76,8 +77,24 @@ export const Cart = (props) => {
                     }
                     </tbody>
                 </table>
+                <div>
+                    <input className='form-control' type ="text" placeholder="Coupon Code" onChange={(e)=>{
+                        setCoupon(e.target.value);
+                    }} />
+                    <button type='button' className='btn btn-primary' onClick={()=>{
+                        axios.get(process.env.REACT_APP_API_HOST_URL+'/coupon/validation/'+ coupon)
+                            .then(response => {
+                                if (response.data.data) {
+                                  
+                                    // code  here                     
+                                    
+                                }
+                            })
+                    }}> Apply</button>
+                </div>
+                    <hr/>
                 {/* <button type={'button'} className={'btn btn-primary'} onClick={() => placeOrder()}>{placeOrderText}</button> */}
-                <button type={'button'} className={'btn btn-primary'} onClick={() => history.push('/orderconfirm')}>{placeOrderText}</button>
+                <button type={'button'} className={'btn btn-primary'} onClick={() => history.push('/orderConfirm')}>{placeOrderText}</button>
             </div>
         </div>
     );
