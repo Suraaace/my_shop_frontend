@@ -120,9 +120,13 @@ function MyProfile(props) {
                 <div className="form-group row">
                     <label htmlFor="firsName " className="col-sm-2 col-form-label">First Name</label>
                     <div className="col-sm-10" >
-                        <input type="text"  name ={"firstname"}className="form-control" value={userInfo.firstName} onChange={(e)=>{
-                            setUserInfo({...userInfo, firstName: e.target.value});
-                        }}/>   
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={userInfo.firstName}
+                            onChange={(e)=>{
+                                setUserInfo({...userInfo, firstName: e.target.value});
+                            }}/>
                     </div>
                 </div>
                 <div className="form-group row">
