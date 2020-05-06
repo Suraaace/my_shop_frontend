@@ -46,6 +46,30 @@ export const OrderConfirm = (props) =>{
                     }
                     </tbody>
                 </table>
+                <h2>Pay With Credit Card</h2>
+                <hr/>
+                <div className='form-group'>
+                    <div >
+                        <label htmlFor='name'>Name</label>
+                        <input className='form-control' type='text' placeholder='Name on Card' />
+                    </div>
+                    <div >
+                        <label  className='col-sm-' htmlFor='creditCardNumber'>Credit Card Number</label>
+                        <input className="form-control" type='text' placeholder='Credit Card Number' />
+                    </div>
+                    <div className='row'>
+                        <div className='col-sm-6'>
+                            <label htmlFor='expiryDate'>Valid Untill</label>
+                            <input className="form-control" type='text' placeholder='Valid Untill' />
+                        </div>
+                        <div className='col-sm-6'>
+                            <label htmlFor='cvvPin'>CVV</label>
+                            <input className="form-control" type='text' placeholder='CVV'/>
+                        </div>
+                    </div>
+                </div>
+               <hr/>
+
                 <button type={'button'} className={'btn btn-primary'} onClick = {() => placeOrder()}>Pay </button>
 
                 {/* <button type={'button'} className={'btn btn-primary'} onClick={() => history.push('/orderconfirm')}>{placeOrderText}</button> */}
